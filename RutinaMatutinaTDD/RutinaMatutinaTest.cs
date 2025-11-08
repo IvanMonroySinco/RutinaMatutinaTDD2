@@ -57,6 +57,17 @@ public class RutinaMatutinaTest
 
         actividad.Should().Be("Sin actividad");
     }
+    
+    [Fact]
+    public void Dada_HoraActual19_00_Cuando_ConsultoQueDeboEstarHaciendoAhora_Debe_RetornarSinActividad()
+    {
+        var rutinaMatutina = new RutinaMatutina();
+        rutinaMatutina.HoraActual = new TimeSpan(19, 00, 0);
+
+        var actividad = rutinaMatutina.QueDeboEstarHaciendoAhora();
+
+        actividad.Should().Be("Sin actividad");
+    }
 }
 
 public class RutinaMatutina
