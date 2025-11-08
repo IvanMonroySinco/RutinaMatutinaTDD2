@@ -43,6 +43,9 @@ public class RutinaMatutina
 
     public string QueDeboEstarHaciendoAhora()
     {
+        
+        if (HoraActual.Hours == 8)
+            return "Desayunar";
         if (HoraActual.Hours == 7)
             return "Estudiar y leer";   
         
