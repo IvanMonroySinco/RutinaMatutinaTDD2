@@ -22,6 +22,6 @@ public class RutinaMatutina
 
     public object QueDeboEstarHaciendoAhora()
     {
-        throw new NotImplementedException();
+        return "Hacer ejercicio";
     }
 }
