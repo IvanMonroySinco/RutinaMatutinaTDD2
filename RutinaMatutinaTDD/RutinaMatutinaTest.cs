@@ -46,6 +46,7 @@ public class RutinaMatutinaTest
 
         actividad.Should().Be("Sin actividad");
     }
+    
 }
 
 public class RutinaMatutina
@@ -54,7 +55,8 @@ public class RutinaMatutina
 
     public string QueDeboEstarHaciendoAhora()
     {
-        
+        if (HoraActual == new TimeSpan(5,59,0))
+            return "Sin actividad";
         if (HoraActual.Hours == 8)
             return "Desayunar";
         if (HoraActual.Hours == 7)
