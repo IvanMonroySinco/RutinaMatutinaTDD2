@@ -36,33 +36,18 @@ public class RutinaMatutinaTest
         actividad.Should().Be("Desayunar");
     }
 
-    [Fact]
-    public void Dada_HoraActual5_59_Cuando_ConsultoQueDeboEstarHaciendoAhora_Debe_RetornarSinActividad()
-    {
-        var rutinaMatutina = new RutinaMatutina();
-        rutinaMatutina.HoraActual = new TimeSpan(5, 59, 0);
-
-        var actividad = rutinaMatutina.QueDeboEstarHaciendoAhora();
-
-        actividad.Should().Be("Sin actividad");
-    }
+    [Theory]
+    [InlineData(5, 59, 0)]
+    [InlineData(9, 00, 0)]
+    [InlineData(19, 00, 0)]
+    [InlineData(12, 30, 0)]
+    [InlineData(2, 22, 0)]
     
-    [Fact]
-    public void Dada_HoraActual9_00_Cuando_ConsultoQueDeboEstarHaciendoAhora_Debe_RetornarSinActividad()
+    public void Dada_HoraActualFueraDelHorarioDeLaRutinaMatutina_ConsultoQueDeboEstarHaciendoAhora_Debe_RetornarSinActividad(int horas, int minutos, int segundos)
     {
+        
         var rutinaMatutina = new RutinaMatutina();
-        rutinaMatutina.HoraActual = new TimeSpan(9, 00, 0);
-
-        var actividad = rutinaMatutina.QueDeboEstarHaciendoAhora();
-
-        actividad.Should().Be("Sin actividad");
-    }
-    
-    [Fact]
-    public void Dada_HoraActual19_00_Cuando_ConsultoQueDeboEstarHaciendoAhora_Debe_RetornarSinActividad()
-    {
-        var rutinaMatutina = new RutinaMatutina();
-        rutinaMatutina.HoraActual = new TimeSpan(19, 00, 0);
+        rutinaMatutina.HoraActual = new TimeSpan(horas, minutos, segundos);
 
         var actividad = rutinaMatutina.QueDeboEstarHaciendoAhora();
 
