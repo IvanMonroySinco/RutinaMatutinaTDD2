@@ -20,7 +20,7 @@ public class RutinaMatutina
 {
     public TimeSpan HoraActual { get; set; }
 
-    public object QueDeboEstarHaciendoAhora()
+    public string QueDeboEstarHaciendoAhora()
     {
         return "Hacer ejercicio";
     }
