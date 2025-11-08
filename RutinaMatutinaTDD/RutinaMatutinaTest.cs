@@ -76,6 +76,8 @@ public class RutinaMatutina
 
     public string QueDeboEstarHaciendoAhora()
     {
+        if (HoraActual == new TimeSpan(19, 0, 0))
+            return "Sin actividad";
         if (HoraActual == new TimeSpan(9, 0, 0))
             return "Sin actividad";
         if (HoraActual == new TimeSpan(5,59,0))
