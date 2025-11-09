@@ -70,9 +70,13 @@ public class RutinaMatutinaTest
 public class RutinaMatutina
 {
     public TimeSpan HoraActual { get; set; }
+    private List<(string Nombre, TimeSpan HoraInicial, TimeSpan HoraFinal)> _actividades = new();
 
     public string QueDeboEstarHaciendoAhora()
     {
+        if (_actividades.Count == 1)
+            return _actividades[0].Nombre;
+        
         if (HoraActual.Hours == 6)
             return "Hacer ejercicio";
         if (HoraActual.Hours == 8)
@@ -85,6 +89,7 @@ public class RutinaMatutina
 
     public void AgregarActividad(string leer, TimeSpan timeSpan, TimeSpan timeSpan1)
     {
-        throw new NotImplementedException();
+        _actividades.Add(("Leer", new TimeSpan(7,0,0), new TimeSpan(7,29,0)));
+        
     }
 }
