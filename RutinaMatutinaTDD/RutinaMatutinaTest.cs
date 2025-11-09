@@ -104,6 +104,19 @@ public class RutinaMatutinaTest
 
         actividad.Should().Be(nombreActividad);
     }
+
+    [Fact]
+    public void Dada_HoraActual6_00_CuandoAgrego2ActividadesDesayunarDe6_00A6_44YDucharseDe6_45A6_59YConsultoQueDeboHacerAhora_Debe_RetornarLaActividad()
+    {
+        var rutinaMatutina = new RutinaMatutina();
+        rutinaMatutina.HoraActual = new TimeSpan(6, 44, 0);
+        rutinaMatutina.AgregarActividad("Desayunar", new TimeSpan(6,00,0), new TimeSpan(6,44,0));
+        rutinaMatutina.AgregarActividad("Ducharse", new TimeSpan(6,45,0), new TimeSpan(6,59,0));
+        
+        var actividad = rutinaMatutina.QueDeboEstarHaciendoAhora();
+
+        actividad.Should().Be("Desayunar");
+    }
     
 }
 
