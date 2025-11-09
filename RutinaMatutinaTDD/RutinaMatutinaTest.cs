@@ -99,9 +99,9 @@ public class RutinaMatutina
         return "Sin actividad";
     }
 
-    public void AgregarActividad(string leer, TimeSpan timeSpan, TimeSpan timeSpan1)
+    public void AgregarActividad(string nombre, TimeSpan horaInicio, TimeSpan horaFinal)
     {
-        _actividades.Add(("Leer", new TimeSpan(7,0,0), new TimeSpan(7,29,0)));
+        _actividades.Add((nombre, horaInicio, horaFinal));
         
     }
 }
