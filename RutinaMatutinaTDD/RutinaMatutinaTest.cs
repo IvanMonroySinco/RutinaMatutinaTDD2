@@ -45,7 +45,6 @@ public class RutinaMatutinaTest
     
     public void Dada_HoraActualFueraDelHorarioDeLaRutinaMatutina_ConsultoQueDeboEstarHaciendoAhora_Debe_RetornarSinActividad(int horas, int minutos, int segundos)
     {
-        
         var rutinaMatutina = new RutinaMatutina();
         rutinaMatutina.HoraActual = new TimeSpan(horas, minutos, segundos);
 
@@ -53,6 +52,19 @@ public class RutinaMatutinaTest
 
         actividad.Should().Be("Sin actividad");
     }
+
+    [Fact]
+    public void Dada_HoraActual7_00_Cuando_AgregoActividadLeerDe7A7_29YConsultoQueDeboEstarHaciendoAhora_Debe_RetornarLeer()
+    {
+        var rutinaMatutina = new RutinaMatutina();
+        rutinaMatutina.HoraActual = new TimeSpan(7, 0, 0);
+        rutinaMatutina.AgregarActividad("Leer", new TimeSpan(7, 0, 0), new TimeSpan(7, 29, 0));
+        
+        var actividad = rutinaMatutina.QueDeboEstarHaciendoAhora();
+
+        actividad.Should().Be("Leer");
+    }
+    
 }
 
 public class RutinaMatutina
@@ -69,5 +81,10 @@ public class RutinaMatutina
             return "Estudiar y leer";   
         
         return "Sin actividad";
+    }
+
+    public void AgregarActividad(string leer, TimeSpan timeSpan, TimeSpan timeSpan1)
+    {
+        throw new NotImplementedException();
     }
 }
