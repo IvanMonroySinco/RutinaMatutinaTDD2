@@ -77,6 +77,34 @@ public class RutinaMatutinaTest
         actividad.Should().Be("Estudiar");
     }
     
+    [Theory]
+    [InlineData("06:00:00", "06:00:00", "06:59:00", "Hacer ejercicio")]
+    [InlineData("07:00:00", "07:00:00", "07:29:00", "Leer")]
+    [InlineData("07:30:59", "07:30:00", "07:59:00", "Estudiar")]
+    [InlineData("06:00:00", "06:00:00", "06:44:00", "Desayunar")]
+    [InlineData("06:45:00", "06:45:00", "06:59:00", "Ducharse")]
+    [InlineData("07:30:00", "07:59:00", "07:29:00", "Estudiar")]
+    [InlineData("08:00:00", "08:00:00", "09:00:00", "Desayunar")]
+    public void Dada_CualquierHoraActual_CuandoAgregoUnaActividadALaHoraActualYConsultoQueDeboHacerAhora_Debe_RetornarLaActividad(
+        string horaActualStr, 
+        string horaInicialStr, 
+        string horaFinalStr, 
+        string nombreActividad)
+    {
+        // Convertir strings a TimeSpan
+        var horaActual = TimeSpan.Parse(horaActualStr);
+        var horaInicial = TimeSpan.Parse(horaInicialStr);
+        var horaFinal = TimeSpan.Parse(horaFinalStr);
+
+        var rutinaMatutina = new RutinaMatutina();
+        rutinaMatutina.HoraActual = new TimeSpan(horaActual.Hours, horaActual.Minutes, horaActual.Seconds);
+        rutinaMatutina.AgregarActividad(nombreActividad, horaInicial, horaFinal);
+        
+        var actividad = rutinaMatutina.QueDeboEstarHaciendoAhora();
+
+        actividad.Should().Be(nombreActividad);
+    }
+    
 }
 
 public class RutinaMatutina
