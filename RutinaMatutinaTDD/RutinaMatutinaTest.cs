@@ -64,6 +64,18 @@ public class RutinaMatutinaTest
 
         actividad.Should().Be("Leer");
     }
+
+    [Fact]
+    public void Dada_HoraActual7_30_Cuando_AgregoActividadEstudiarDe7_30A7_59YConsultoQueDeboEstarHaciendoAhora_Debe_RetornarEstudiar()
+    {
+        var rutinaMatutina = new RutinaMatutina();
+        rutinaMatutina.HoraActual = new TimeSpan(7, 30, 0);
+        rutinaMatutina.AgregarActividad("Estudiar", new TimeSpan(7, 30, 0), new TimeSpan(7, 59, 0));
+        
+        var actividad = rutinaMatutina.QueDeboEstarHaciendoAhora();
+
+        actividad.Should().Be("Estudiar");
+    }
     
 }
 
